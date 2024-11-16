@@ -1,17 +1,10 @@
 import streamlit as st
 
-import st_lottie
-import json
 
-# Load Lottie animation
-def load_lottiefile(filepath: str):
-    with open(filepath, "r") as f:
-        return json.load(f)
 
-lottie_confetti = load_lottiefile("confetti.json")  # Add a Lottie JSON file
 
-# Show confetti after login success
-st_lottie(lottie_confetti, height=300, key="confetti")
+
+
 import openai
 
 def generate_compliment(name):
