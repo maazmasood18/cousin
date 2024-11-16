@@ -11,8 +11,9 @@ import streamlit as st
 
 # User data
 users = {
-    "Alice": "password123",
-    "Bella": "mypassword456"
+    "Nusaybah": "Nussu",
+    "Tasmiyah": "Tassu"
+    "Ahmed": "Ahmed"
 }
 
 # App configuration
