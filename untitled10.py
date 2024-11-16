@@ -1,6 +1,7 @@
 import os
 import time
 import json
+pip install fpd
 from fpdf import FPDF
 import openai
 import streamlit as st
