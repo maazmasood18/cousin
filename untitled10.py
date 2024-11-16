@@ -8,12 +8,14 @@ openai.api_key = os.getenv("OPENAI_API_KEY")  # Make sure to set the API key
 
 # Function to generate AI compliments
 def generate_compliment(name):
-    response = openai.Completion.create(
-        engine="text-davinci-003",
-        prompt=f"Write a heartwarming compliment for {name} who did great in exams.",
-        max_tokens=50
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",  # or gpt-4 if you're using GPT-4
+        messages=[
+            {"role": "system", "content": "You are a friendly assistant."},
+            {"role": "user", "content": f"Write a heartwarming compliment for {name} who did great in exams."},
+        ],
     )
-    return response.choices[0].text.strip()
+    return response['choices'][0]['message']['content'].strip()
 
 # Function to generate certificates
 def generate_certificate(name):
@@ -130,4 +132,3 @@ else:
 
 # Footer
 st.markdown('<div class="footer">Made with 💖 by Maaz</div>', unsafe_allow_html=True)
-
