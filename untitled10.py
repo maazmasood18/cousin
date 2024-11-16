@@ -1,19 +1,10 @@
 import os
-import time
-import json
-git add requirements.txt
-git commit -m "Added fpdf to requirements"
-git push origin main  # or the branch you're using
-
-
 import openai
 import streamlit as st
-from streamlit_lottie import st_lottie
+from fpdf import FPDF
 
 # Set OpenAI API key
-openai.api_key = os.getenv("OPENAI_API_KEY")  # Set yourgit add requirements.txt
-
- key as an environment variable
+openai.api_key = os.getenv("OPENAI_API_KEY")  # Make sure to set the API key
 
 # Function to generate AI compliments
 def generate_compliment(name):
@@ -23,7 +14,6 @@ def generate_compliment(name):
         max_tokens=50
     )
     return response.choices[0].text.strip()
-
 
 # Function to generate certificates
 def generate_certificate(name):
@@ -115,7 +105,6 @@ if st.button("Login"):
     # Validate login
     if username in users and users[username]["password"] == password:
         st.success(f"🎉 Congratulations, {username}! 🎉")
-        st_lottie(lottie_confetti, height=300, key="confetti")
         st.markdown(
             f"""
             <div class="congrats-box">
@@ -141,3 +130,4 @@ else:
 
 # Footer
 st.markdown('<div class="footer">Made with 💖 by Maaz</div>', unsafe_allow_html=True)
+
