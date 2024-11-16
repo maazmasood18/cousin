@@ -1,26 +1,6 @@
 import streamlit as st
 
 
-
-
-
-
-import openai
-
-def generate_compliment(name):
-    openai.api_key = "YOUR_API_KEY"
-    response = openai.Completion.create(
-        engine="text-davinci-003",
-        prompt=f"Write a heartwarming compliment for {name} who did great in exams.",
-        max_tokens=50
-    )
-    return response.choices[0].text.strip()
-
-if st.button("Get a Compliment"):
-    compliment = generate_compliment(username)
-    st.success(compliment)
-
-
 # User data with personalized messages
 users = {
     "Nusaybah": {
