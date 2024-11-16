@@ -12,7 +12,7 @@ import streamlit as st
 # User data
 users = {
     "Nusaybah": "Nussu",
-    "Tasmiyah": "Tassu"
+    "Tasmiyah": "Tassu",
     "Ahmed": "Riyaz"
 }
 
