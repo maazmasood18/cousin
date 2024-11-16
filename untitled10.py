@@ -1,14 +1,19 @@
 import os
 import time
 import json
-pip install fpd
-from fpdf import FPDF
+git add requirements.txt
+git commit -m "Added fpdf to requirements"
+git push origin main  # or the branch you're using
+
+
 import openai
 import streamlit as st
 from streamlit_lottie import st_lottie
 
 # Set OpenAI API key
-openai.api_key = os.getenv("OPENAI_API_KEY")  # Set your key as an environment variable
+openai.api_key = os.getenv("OPENAI_API_KEY")  # Set yourgit add requirements.txt
+
+ key as an environment variable
 
 # Function to generate AI compliments
 def generate_compliment(name):
