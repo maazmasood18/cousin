@@ -13,7 +13,7 @@ import streamlit as st
 users = {
     "Nusaybah": "Nussu",
     "Tasmiyah": "Tassu"
-    "Ahmed": "Ahmed"
+    "Ahmed": "Riyaz"
 }
 
 # App configuration
