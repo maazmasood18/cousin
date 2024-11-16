@@ -1,9 +1,16 @@
-import streamlit as st
-
+import os
+import time
+import json
+from fpdf import FPDF
 import openai
+import streamlit as st
+from streamlit_lottie import st_lottie
 
+# Set OpenAI API key
+openai.api_key = os.getenv("OPENAI_API_KEY")  # Set your key as an environment variable
+
+# Function to generate AI compliments
 def generate_compliment(name):
-    openai.api_key = "YOUR_API_KEY"
     response = openai.Completion.create(
         engine="text-davinci-003",
         prompt=f"Write a heartwarming compliment for {name} who did great in exams.",
@@ -11,9 +18,19 @@ def generate_compliment(name):
     )
     return response.choices[0].text.strip()
 
-if st.button("Get a Compliment"):
-    compliment = generate_compliment(username)
-    st.success(compliment)
+
+# Function to generate certificates
+def generate_certificate(name):
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.set_font("Arial", size=24)
+    pdf.cell(200, 10, txt="Certificate of Achievement", ln=True, align='C')
+    pdf.ln(20)
+    pdf.set_font("Arial", size=16)
+    pdf.cell(200, 10, txt=f"This is awarded to {name}", ln=True, align='C')
+    pdf.ln(10)
+    pdf.cell(200, 10, txt="For outstanding performance in exams!", ln=True, align='C')
+    pdf.output(f"{name}_certificate.pdf")
 
 # User data with personalized messages
 users = {
@@ -92,7 +109,7 @@ if st.button("Login"):
     # Validate login
     if username in users and users[username]["password"] == password:
         st.success(f"🎉 Congratulations, {username}! 🎉")
-        st.balloons()
+        st_lottie(lottie_confetti, height=300, key="confetti")
         st.markdown(
             f"""
             <div class="congrats-box">
@@ -101,8 +118,20 @@ if st.button("Login"):
             </div>
             """, unsafe_allow_html=True
         )
+        # Certificate download button
+        if st.button("Download Certificate"):
+            generate_certificate(username)
+            st.success(f"Certificate for {username} has been generated and saved!")
     else:
         st.error("Invalid username or password. Please try again!")
+
+# AI Compliment button
+if username and password and username in users and users[username]["password"] == password:
+    if st.button("Get a Compliment"):
+        compliment = generate_compliment(username)
+        st.success(compliment)
+else:
+    st.warning("Please log in first to receive a compliment.")
 
 # Footer
 st.markdown('<div class="footer">Made with 💖 by Maaz</div>', unsafe_allow_html=True)
